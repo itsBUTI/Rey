@@ -96,6 +96,21 @@ function ScrollReveal() {
   return null;
 }
 
+function AppRoutes() {
+  const location = useLocation();
+  return (
+    <div key={location.pathname} className="page-transition-wrapper">
+      <Routes location={location}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/produkte" element={<ProductsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/faq" element={<FaqPage />} />
+      </Routes>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
@@ -103,14 +118,7 @@ function App() {
         <ScrollToTop />
         <ScrollReveal />
         <Navbar />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/produkte" element={<ProductsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-        </Routes>
+        <AppRoutes />
 
         <Footer />
       </div>

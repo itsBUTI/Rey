@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @font-face {
   font-family: 'Gala';
   src: url('./assets/Gala-Medium.woff') format('woff');
@@ -31,7 +33,7 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
-  --font-main: 'Gala', sans-serif;
+  --font-main: 'Inter', sans-serif;
   --font-serif: 'Gala', serif;
 }
 
@@ -139,6 +141,15 @@ button {
 
 .animate-float {
   animation: float 5s ease-in-out infinite;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-transition-wrapper {
+  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Scroll reveal */

@@ -25,7 +25,7 @@ function Heritage() {
           data-aos-duration="900"
           data-aos-delay="200"
         >
-          <h2><span >GALA</span> & Values</h2>
+          <h2><span >Our story</span> & Values</h2>
           <p>
             What began as a simple family recipe has grown into a standard of quality for refreshing beverages. At Rey, we believe great taste should never compromise on health.
           </p>

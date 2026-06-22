@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import SeoHead from '../components/SeoHead';
 import './FaqPage.css';
 
 function FaqPage() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFaq = (idx) => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
+
   const faqs = [
     {
       q: 'What products does Rey offer?',
@@ -56,12 +63,24 @@ function FaqPage() {
       <section className="faq-section">
         <div className="container faq-grid">
           <div className="faq-list" data-aos="fade-up" data-aos-duration="950" data-aos-delay="100">
-            {faqs.map((item, idx) => (
-              <article key={idx} className="faq-item">
-                <h2 className="faq-question">{item.q}</h2>
-                <p className="faq-answer">{item.a}</p>
-              </article>
-            ))}
+            {faqs.map((item, idx) => {
+              const isOpen = openIndex === idx;
+              return (
+                <article 
+                  key={idx} 
+                  className={`faq-item ${isOpen ? 'open' : ''}`}
+                  onClick={() => toggleFaq(idx)}
+                >
+                  <h2 className="faq-question">
+                    {item.q}
+                    <span className="faq-icon">{isOpen ? '−' : '+'}</span>
+                  </h2>
+                  <div className="faq-answer-wrapper" style={{ maxHeight: isOpen ? '200px' : '0' }}>
+                    <p className="faq-answer">{item.a}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           <aside className="faq-aside" data-aos="fade-up" data-aos-duration="950" data-aos-delay="200">

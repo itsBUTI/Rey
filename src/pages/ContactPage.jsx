@@ -52,7 +52,7 @@ function ContactPage() {
         return;
       }
 
-      setStatus({ type: 'idle', text: '' });
+      setStatus({ type: 'sending', text: '' });
 
       const templateParams = {
         from_name: form.name,
@@ -67,7 +67,7 @@ function ContactPage() {
 
       setStatus({
         type: 'success',
-        text: 'Thanks! Your message has been sent. We will get back to you soon.'
+        text: 'Thanks! Your message has been sent successfully.'
       });
 
       setForm({
@@ -177,20 +177,34 @@ function ContactPage() {
                 />
               </label>
 
-              {status.type !== 'idle' ? (
-                <div
-                  className={`contact-status ${status.type === 'success' ? 'success' : 'error'}`}
-                  role="status"
-                >
+              {status.type === 'error' && (
+                <div className="contact-status error" role="status">
                   {status.text}
                 </div>
-              ) : null}
+              )}
 
-              <button type="submit" className="btn-primary contact-submit">
-                Submit message
+              <button 
+                type="submit" 
+                className="btn-primary contact-submit" 
+                disabled={status.type === 'sending'}
+              >
+                {status.type === 'sending' ? 'Sending...' : 'Submit message'}
               </button>
             </form>
           </div>
+
+          {status.type === 'success' && (
+            <div className="success-modal-overlay">
+              <div className="success-modal">
+                <div className="success-icon">✓</div>
+                <h3>Message Sent</h3>
+                <p>We'll get back to you within 1-2 business days.</p>
+                <button className="btn-primary" onClick={() => setStatus({ type: 'idle', text: '' })}>
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="contact-side" data-aos="fade-up" data-aos-duration="950" data-aos-delay="200">
             <div className="contact-info">
