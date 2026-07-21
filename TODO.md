@@ -1,4 +1,7 @@
-# TODO
-- [ ] Ensure font 'gala' is loaded (via @font-face or external URL) in the global CSS.
-- [ ] Update styling for `.split-text h2 span` inside the split section to use the loaded `gala` font (and add fallback).
-- [ ] Verify build (vite) and check the affected page sections render correctly.
+## TODO
+- [x] Improve Products section cards: add 3D stage feel, masking-based cutout look, and stronger depth shadows.
+- [ ] Upgrade to a truly “premium/cool/different” 3D card system:
+  - [ ] Build a layered card image stage (glass shell + gradient rim + contact shadow) instead of simple masking/shadows.
+  - [ ] Add per-product rim lighting using `glowColor` (CSS vars) and subtle animated highlight sweep.
+  - [ ] Ensure edges stay clean (avoid over-masking) and matches showcase quality.
+

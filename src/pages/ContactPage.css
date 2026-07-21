@@ -8,7 +8,7 @@
   position: relative;
   height: 70vh;
   min-height: 420px;
-  background: url('../assets/contact-hero.png') center/cover no-repeat;
+  background: url('../assets/contact_hero.png') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +178,7 @@
 .success-modal h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
 }
 
 .success-modal p {
@@ -219,6 +219,68 @@
   font-size: 1.35rem;
   margin-bottom: 1rem;
 }
+
+.contact-social {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.contact-social-heading {
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.98rem;
+  margin-bottom: 0.85rem;
+}
+
+.contact-social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.contact-social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-social-icon::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(circle at 30% 20%, rgba(37, 99, 235, 0.18), transparent 55%);
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.contact-social-icon:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.14);
+}
+
+.contact-social-icon:hover::after {
+  opacity: 1;
+}
+
+.contact-social-icon:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18), 0 14px 30px rgba(37, 99, 235, 0.14);
+}
+
+
 
 .info-row {
   display: flex;

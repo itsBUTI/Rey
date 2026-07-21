@@ -64,26 +64,20 @@ function Footer() {
           <p className="footer-copy">&copy; {new Date().getFullYear()} Rey Drinks. All rights reserved.</p>
 
           <div className="footer-socials" aria-label="Social links">
-            <a href="#" aria-label="Facebook" className="footer-social">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <a href="https://facebook.com" aria-label="Facebook" className="footer-social" target="_blank" rel="noreferrer">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
               </svg>
             </a>
-            <a href="#" aria-label="Twitter" className="footer-social">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-              </svg>
-            </a>
-            <a href="#" aria-label="Instagram" className="footer-social">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <a href="https://www.instagram.com/reydrinksofficial/" aria-label="Instagram" className="footer-social" target="_blank" rel="noreferrer">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <rect width="18" height="18" x="3" y="3" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01" />
               </svg>
             </a>
-            <a href="#" aria-label="LinkedIn" className="footer-social">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
-                <circle cx="4" cy="4" r="2" />
+            <a href="https://www.tiktok.com/@reydrinksofficial" aria-label="TikTok" className="footer-social" target="_blank" rel="noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16.7 6.1c.9.7 2 1.1 3.3 1.1v3.2c-1.7 0-3.1-.5-4.4-1.3v7.2c0 3.2-2.6 5.8-5.8 5.8S4 20.5 4 17.3c0-3.2 2.6-5.8 5.8-5.8.3 0 .6 0 .9.1v3.4c-.3-.1-.6-.2-1-.2-1.3 0-2.4 1.1-2.4 2.4s1.1 2.4 2.4 2.4 2.4-1.1 2.4-2.4V2h3.4c0 1.6.6 2.9 1.8 4.1z" />
               </svg>
             </a>
           </div>

@@ -2,7 +2,7 @@ import './AboutPage.css';
 
 
 import aboutImage1 from '../assets/Logo copy.JPG';
-import aboutImage2 from '../assets/All-products.jpeg';
+import aboutImage2 from '../assets/hero-home.png';
 
 import SeoHead from '../components/SeoHead';
 

@@ -79,7 +79,7 @@
 }
 
 .faq-question {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 1.35rem;
   margin-bottom: 0;
   display: flex;

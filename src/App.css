@@ -5,10 +5,17 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0; /* Removed padding to strictly follow the 100px height */
+  padding: 0;
   z-index: 100;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   background: transparent;
+  will-change: transform;
+}
+
+.navbar--hidden {
+  transform: translateY(-100%);
 }
 
 .nav-hamburger {
@@ -187,116 +194,335 @@
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   position: relative;
-  background-color: var(--bg-surface);
+  background: linear-gradient(180deg, #fafaf8 0%, #f5f3ee 50%, #eeebe3 100%);
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 140px;
+  padding-bottom: 120px;
 }
-
 .hero::before {
   content: '';
   position: absolute;
-  top: -10%; right: -5%;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, rgba(255,255,255,0) 70%);
+  top: -15%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(251,191,36,0.12) 0%, transparent 70%);
   border-radius: 50%;
   z-index: 0;
 }
-
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%; left: -10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
 .hero-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
-
 .hero-badge {
   display: inline-block;
   padding: 0.4rem 1rem;
-  background: rgba(217, 119, 6, 0.1);
-  color: var(--primary-dark);
-  font-weight: 600;
-  font-size: 0.85rem;
+  background: rgba(15,23,42,0.06);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.72rem;
   border-radius: 50px;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
-
 .hero-text h1 {
-  font-size: 4rem;
-  line-height: 1.1;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.08;
   margin-bottom: 1.5rem;
   color: var(--text-main);
+  letter-spacing: -0.03em;
 }
-
 .hero-text p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
   margin-bottom: 2.5rem;
   line-height: 1.7;
   max-width: 90%;
 }
+.hero-actions { display: flex; gap: 1rem; align-items: center; }
 
-.hero-actions {
+/* ─── Hero 3D Bottle Scene ─── */
+.hero-3d-scene {
+  width: 100%;
+  position: relative;
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+
+.hero-bottles-arrangement {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-bottle {
+  position: absolute;
+  bottom: 30px;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  transform-origin: bottom center;
+}
+
+.hero-bottle img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+/* 1. Blueberry (Far Left, Back) */
+.hero-bottle--back-left {
+  height: 260px;
+  left: 10%;
+  z-index: 1;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.08)) blur(1px);
+  transform: translateX(0) scale(0.9) rotate(-3deg);
+  animation: float-far-left 8s ease-in-out infinite;
+}
+
+/* 2. Boza (Far Right, Back) */
+.hero-bottle--back-right {
+  height: 290px;
+  right: 8%;
+  z-index: 2;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,0.1)) blur(0.5px);
+  transform: translateX(0) scale(0.95) rotate(4deg);
+  animation: float-far-right 7.5s ease-in-out infinite;
+}
+
+/* 3. Lemon Water (Mid Left) */
+.hero-bottle--front-left {
+  height: 340px;
+  left: 28%;
+  z-index: 3;
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.15));
+  transform: translateX(0) rotate(-1.5deg);
+  animation: float-mid-left 6.5s ease-in-out infinite;
+}
+
+/* 4. Lemonade (Front Center-Right - HERO) */
+.hero-bottle--front-right {
+  height: 420px;
+  right: 25%;
+  bottom: 10px;
+  z-index: 4;
+  filter: drop-shadow(0 35px 50px rgba(0,0,0,0.22));
+  transform: translateX(0) rotate(1deg);
+  animation: float-hero 7s ease-in-out infinite;
+}
+
+/* Hover Effect - brings them into focus */
+.hero-bottles-arrangement:hover .hero-bottle {
+  filter: drop-shadow(0 25px 40px rgba(0,0,0,0.15)) blur(0);
+}
+.hero-bottles-arrangement:hover .hero-bottle--front-right {
+  transform: scale(1.05) rotate(0deg);
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.25));
+}
+.hero-bottles-arrangement:hover .hero-bottle--front-left {
+  transform: translateX(-15px) rotate(-3deg);
+}
+.hero-bottles-arrangement:hover .hero-bottle--back-right {
+  transform: translateX(15px) rotate(6deg);
+}
+.hero-bottles-arrangement:hover .hero-bottle--back-left {
+  transform: translateX(-20px) rotate(-5deg);
+}
+
+@keyframes float-far-left {
+  0%, 100% { transform: translateX(0) scale(0.9) rotate(-3deg) translateY(0); }
+  50% { transform: translateX(0) scale(0.9) rotate(-3deg) translateY(-12px); }
+}
+@keyframes float-far-right {
+  0%, 100% { transform: translateX(0) scale(0.95) rotate(4deg) translateY(0); }
+  50% { transform: translateX(0) scale(0.95) rotate(4deg) translateY(-15px); }
+}
+@keyframes float-mid-left {
+  0%, 100% { transform: translateX(0) rotate(-1.5deg) translateY(0); }
+  50% { transform: translateX(0) rotate(-1.5deg) translateY(-10px); }
+}
+@keyframes float-hero {
+  0%, 100% { transform: translateX(0) rotate(1deg) translateY(0); }
+  50% { transform: translateX(0) rotate(1deg) translateY(-8px); }
 }
 
 .btn-primary {
   background: var(--text-main);
   color: white;
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
+  padding: 1rem 2.2rem;
+  font-size: 0.95rem;
   font-weight: 600;
   border-radius: 50px;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-md);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2);
 }
-
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
 }
-
 .btn-secondary {
   background: white;
   color: var(--text-main);
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
+  padding: 1rem 2.2rem;
+  font-size: 0.95rem;
   font-weight: 600;
   border-radius: 50px;
-  border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  border: 1.5px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
 }
-
 .btn-secondary:hover {
   border-color: var(--text-main);
-  background: var(--bg-surface);
+  background: rgba(15, 23, 42, 0.03);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
-
-.hero-image-wrapper {
-  width: min(750px, 100%);
+/* ─── Per-Product Discover Buttons ─── */
+/*
+  Default: clean white pill, dark text, refined border.
+  Hover: the product's natural color quietly washes in from the bottom
+  via a ::before pseudo-element — like liquid rising in a glass.
+  Colors are muted, natural, and brand-aligned — not digital/neon.
+*/
+.btn-product {
   position: relative;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
-
-  /* Keeps the hero image responsive */
-  aspect-ratio: 4 / 3;
+  width: 100%;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  color: var(--text-main);
+  background: white;
+  border: 1.5px solid rgba(15, 23, 42, 0.12);
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
 }
 
-.hero-image {
+/* The liquid fill layer */
+.btn-product::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+  opacity: 0;
+  z-index: -1;
+}
+
+.btn-product:hover {
+  color: white;
+  border-color: transparent;
+  transform: translateY(-3px);
+}
+
+.btn-product:hover::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* Lemonade — warm, aged parchment gold. Natural. Muted. */
+.btn-product[data-product="lemonade"]::before {
+  background: #b8860b;
+}
+.btn-product[data-product="lemonade"]:hover {
+  box-shadow: 0 10px 28px rgba(184, 134, 11, 0.35);
+}
+
+/* Blueberry (Boronic) — dusty slate-plum. Like aged wine. */
+.btn-product[data-product="blueberry"]::before {
+  background: #4a3060;
+}
+.btn-product[data-product="blueberry"]:hover {
+  box-shadow: 0 10px 28px rgba(74, 48, 96, 0.35);
+}
+
+/* Boza — warm roasted amber. Like toffee or dark oak. */
+.btn-product[data-product="boza"]::before {
+  background: #8b5e1a;
+}
+.btn-product[data-product="boza"]:hover {
+  box-shadow: 0 10px 28px rgba(139, 94, 26, 0.35);
+}
+
+/* Lemon Water — soft mineral teal. Like spring water in glass. */
+.btn-product[data-product="lemon-water"]::before {
+  background: #1a7a8a;
+}
+.btn-product[data-product="lemon-water"]:hover {
+  box-shadow: 0 10px 28px rgba(26, 122, 138, 0.35);
+}
+
+
+.play-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  margin-right: 8px;
+  font-size: 9px;
+  padding-left: 2px;
+}
+
+/* ─── Hero 3D Scene ─── */
+.hero-3d-scene {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero Main Image Layout */
+.hero-main-image-container {
+  width: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-main-image {
+  width: 150%;
+  max-width: 1300px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.12));
 }
 
 /* Featured Logos */
@@ -333,102 +559,132 @@
 
 /* Products Section */
 .products-section {
-  padding: 8rem 0;
+  padding: 6rem 0;
   background-color: var(--bg-alt);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .section-header h2 {
-  font-size: 2.2rem;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .section-header p {
   color: var(--text-muted);
-  font-size: 1rem;
-  max-width: 600px;
+  font-size: 1.05rem;
+  max-width: 620px;
   margin: 0 auto;
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (min-width: 1101px) {
+  .products-grid .product-card:nth-child(even) {
+    margin-top: 3.5rem;
+  }
 }
 
 @media (max-width: 1100px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 640px) {
   .products-grid {
     grid-template-columns: 1fr;
+    max-width: 380px;
+    margin: 0 auto;
+    gap: 1.5rem;
   }
 }
 
 .product-card {
   background: white;
-  border-radius: 20px;
-  padding: 2rem 1.5rem;
+  border-radius: 24px;
+  padding: 1.5rem 1.25rem 1.75rem;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  border: 1px solid rgba(0,0,0,0.05);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  overflow: hidden;
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
 }
 
 .product-bg-glow {
   position: absolute;
-  top: -50px; left: 50%;
+  top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 150px; height: 150px;
+  width: 180px; height: 180px;
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(50px);
   opacity: 0.4;
   z-index: 0;
+  pointer-events: none;
   transition: opacity 0.4s ease;
 }
 
 .product-card:hover .product-bg-glow {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
+/* ─── Image Container: fully contained, no overflow ─── */
 .product-image-container {
-  height: 280px;
-  margin-bottom: 1.5rem;
+  width: 100%;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 1;
+  margin-bottom: 1rem;
 }
 
 .product-image {
-  max-height: 100%;
-  max-width: 100%;
+  max-height: 190px;
+  max-width: 80%;
+  width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: drop-shadow(0 12px 20px rgba(15, 23, 42, 0.12));
+  animation: float-product 6s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
-.product-card:hover .product-image {
-  transform: scale(1.08);
+@keyframes float-product {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
+
+.product-card:nth-child(1) .product-image { animation-delay: 0s; }
+.product-card:nth-child(2) .product-image { animation-delay: -1.5s; animation-duration: 6.5s; }
+.product-card:nth-child(3) .product-image { animation-delay: -3s; animation-duration: 5.5s; }
+.product-card:nth-child(4) .product-image { animation-delay: -4.5s; animation-duration: 7s; }
+
+.product-card:hover .product-image {
+  transform: scale(1.06) translateY(-6px);
+  filter: drop-shadow(0 20px 30px rgba(15, 23, 42, 0.2));
+  animation: none;
+}
+
 
 .product-info {
   z-index: 1;
@@ -438,15 +694,16 @@
 }
 
 .product-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 .product-desc {
   color: var(--text-muted);
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.55;
   margin-bottom: 1.5rem;
   flex-grow: 1;
 }
@@ -472,7 +729,7 @@
 
 
 .split-section {
-  padding: 8rem 0;
+  padding: 6rem 0;
   background: white;
 }
 
@@ -513,11 +770,12 @@
 }
 
 .split-text h2 {
+  font-family: var(--font-heading);
   font-size: 2.8rem;
   margin-bottom: 1.5rem;
 }
 .split-text h2 span {
-  font-family: 'Gala', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -817,9 +1075,21 @@
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
-
+  .hero-3d-scene {
+    min-height: 380px;
+    height: 380px;
+  }
+  .hero-bottles-arrangement {
+    height: 380px;
+    transform: scale(0.85);
+    transform-origin: bottom center;
+  }
+  .hero-quality-badge {
+    width: 70px; height: 70px;
+    top: 5px; right: 5px;
+  }
   .hero-actions {
     justify-content: center;
   }

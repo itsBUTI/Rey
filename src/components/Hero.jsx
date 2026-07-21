@@ -1,9 +1,13 @@
 
-import allProducts from '../assets/All-products.jpeg';
-
 import { Link } from 'react-router-dom';
 
+import limonade from '../assets/limonadashishe.png';
+import boronic from '../assets/boronicashishe.png';
+import boza from '../assets/bozashishe.png';
+import lemonWater from '../assets/lemonwatershishe.png';
+
 function Hero() {
+
   return (
     <section id="home" className="hero">
       <div className="container hero-content">
@@ -13,31 +17,46 @@ function Hero() {
           data-aos-duration="900"
           data-aos-delay="100"
         >
-          <span className="hero-badge">Founded in 1969 — Premium Beverages</span>
+          <span className="hero-badge">NATURALLY REFRESHING. MADE FOR REAL LIFE.</span>
           <h1>
-            Freshness from nature, delivered in <span className="text-gradient">your bottle.</span>
+            Freshness from nature, <span className="text-gradient">delivered in your bottle.</span>
           </h1>
           <p>
-            Experience true purity with Rey. We blend time-tested recipes with the freshest ingredients to deliver drinks that not only quench your thirst, but energize your day.
+            Real ingredients. Pure taste. No compromises. Drinks that refresh your body and fuel your day.
           </p>
           <div className="hero-actions">
-            <Link to="/produkte" className="btn-primary">View Products</Link>
-            <Link to="/about" className="btn-secondary">Read Our Story</Link>
+            <Link to="/produkte" className="btn-primary">Explore Products  ➔</Link>
+            <Link to="/about" className="btn-secondary">
+              <span className="play-icon">▶</span> Our Story
+            </Link>
           </div>
         </div>
 
+        {/* ─── Hero 4-Bottle Showcase ─── */}
         <div
-          className="hero-image-wrapper"
-          data-aos="fade-up"
-          data-aos-duration="1000"
+          className="hero-3d-scene"
+          data-aos="fade-in"
+          data-aos-duration="1200"
           data-aos-delay="200"
         >
-          <img src={allProducts} alt="Koleksioni i produkteve Rey" className="hero-image" />
+          <div className="hero-bottles-arrangement">
+            <div className="hero-bottle hero-bottle--back-left">
+              <img src={boronic} alt="Wild Blueberry" />
+            </div>
+            <div className="hero-bottle hero-bottle--back-right">
+              <img src={boza} alt="Traditional Boza" />
+            </div>
+            <div className="hero-bottle hero-bottle--front-left">
+              <img src={limonade} alt="Classic Lemonade" />
+            </div>
+            <div className="hero-bottle hero-bottle--front-right">
+              <img src={lemonWater} alt="Lemon Water" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
 
 export default Hero;

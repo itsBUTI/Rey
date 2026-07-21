@@ -9,7 +9,7 @@
   position: relative;
   height: 90vh;
   min-height: 420px;
-  background: url('../assets/about-hero.png') center/cover no-repeat;
+  background: url('../assets/about_hero.png') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

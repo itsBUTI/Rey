@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom';
 
 import './ProductsPage.css';
 
-import allProducts from '../assets/All-products.jpeg';
-import limonade from '../assets/Limonade copy.png';
-import boronic from '../assets/Boronic copy.png';
-import boza from '../assets/Boza copy.png';
-import ujeMeLimon from '../assets/Uje-me-limon copy.png';
+import allProducts from '../assets/hero-home.png';
+import limonade from '../assets/limonadashishe.png';
+import boronic from '../assets/boronicashishe.png';
+import boza from '../assets/bozashishe.png';
+import ujeMeLimon from '../assets/lemonwatershishe.png';
 
 import SeoHead from '../components/SeoHead';
 
@@ -43,6 +43,7 @@ function ProductsPage() {
       id: 1,
       slug: 'lemonade',
       name: 'Classic Lemonade',
+      tag: 'Signature Taste',
       desc: 'Our signature lemonade is crafted from carefully selected lemons and produced according to a tradition built over decades. With its vibrant citrus notes, balanced sweetness, and refreshing finish, it delivers a timeless taste experience that continues to define our commitment to quality.',
       image: limonade,
       bgColor: 'var(--color-limonade)',
@@ -53,6 +54,7 @@ function ProductsPage() {
       id: 2,
       slug: 'blueberry',
       name: 'Wild Blueberry Beverage',
+      tag: 'Antioxidant Rich',
       desc: 'Created using premium blueberries, this beverage captures the richness and natural character of the fruit while maintaining a smooth and refreshing profile. Every sip reflects our dedication to exceptional ingredients and carefully developed recipes.',
       image: boronic,
       bgColor: 'var(--color-boronic)',
@@ -63,6 +65,7 @@ function ProductsPage() {
       id: 3,
       slug: 'boza',
       name: 'Traditional Boza',
+      tag: 'Heritage Recipe',
       desc: 'Produced according to a recipe that has been preserved for generations, our Traditional Boza embodies the heritage and craftsmanship upon which our company was founded. Its authentic taste and distinctive texture offer a genuine connection to tradition and culture.',
       image: boza,
       bgColor: 'var(--color-boza)',
@@ -73,6 +76,7 @@ function ProductsPage() {
       id: 4,
       slug: 'lemon-water',
       name: 'Lemon Water',
+      tag: 'Pure Hydration',
       desc: 'Combining purity and refreshment, our Lemon Water offers a clean, crisp taste enhanced by delicate lemon notes. Light, refreshing, and easy to enjoy, it is crafted for those who value simplicity, quality, and everyday wellbeing.',
       image: ujeMeLimon,
       bgColor: 'var(--color-uje)',
@@ -108,6 +112,7 @@ function ProductsPage() {
       <section className="products-hero" style={{ backgroundImage: `url(${allProducts})` }}>
         <div className="products-hero-overlay"></div>
         <div className="container products-hero-content" data-aos="fade-up" data-aos-duration="950" data-aos-delay="100">
+          <span className="products-hero-badge">CRAFTED WITH CARE</span>
           <h1>
             Taste the <span className="text-gradient">Difference</span>
           </h1>
@@ -173,6 +178,11 @@ function ProductsPage() {
                 />
               </div>
               <div className="showcase-text" data-aos="fade-up" data-aos-duration="1300" data-aos-delay={100 + idx * 100}>
+                <span className="showcase-index">0{prod.id}</span>
+                <div className="showcase-badge">
+                  <span className="showcase-badge-dot"></span>
+                  {prod.tag}
+                </div>
                 <h2>{prod.name}</h2>
                 <p>{prod.desc}</p>
               </div>

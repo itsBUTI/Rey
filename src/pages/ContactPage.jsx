@@ -1,11 +1,18 @@
 import { useState } from 'react';
 
+import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa';
+
 import emailjs from 'emailjs-com';
 import './ContactPage.css';
 import SeoHead from '../components/SeoHead';
 
+const FacebookIcon = FaFacebookF;
+const InstagramIcon = FaInstagram;
+const TikTokIcon = FaTiktok;
+
 
 function ContactPage() {
+
   const [form, setForm] = useState({
 
     name: '',
@@ -225,7 +232,35 @@ function ContactPage() {
               <div className="info-note">
                 For wholesale and distribution requests, please include your city and estimated monthly volume.
               </div>
+
+              <div className="contact-social" aria-label="Follow Rey Drinks on social media">
+                <div className="contact-social-heading">Follow us</div>
+                <div className="contact-social-icons">
+                  <a href="https://facebook.com" className="contact-social-icon" aria-label="Facebook" target="_blank" rel="noreferrer">
+
+                    <span className="contact-social-icon-inner" aria-hidden="true">
+                      <FacebookIcon />
+                    </span>
+                  </a>
+                  <a href="https://www.instagram.com/reydrinksofficial/" className="contact-social-icon" aria-label="Instagram" target="_blank" rel="noreferrer">
+
+                    <span className="contact-social-icon-inner" aria-hidden="true">
+                      <InstagramIcon />
+                    </span>
+                  </a>
+                  <a href="https://www.tiktok.com/@reydrinksofficial" className="contact-social-icon" aria-label="TikTok" target="_blank" rel="noreferrer">
+
+                    <span className="contact-social-icon-inner" aria-hidden="true">
+                      <TikTokIcon />
+                    </span>
+                  </a>
+
+
+
+                </div>
+              </div>
             </div>
+
 
             {/* <div className="contact-map-card">
               <h3>Visit us</h3>
